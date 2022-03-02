@@ -2,6 +2,8 @@ package com.vivek.ds;
 
 import java.util.ConcurrentModificationException;
 
+import com.vivek.practice.BSTPrac1.Node;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 	
 	private Node root;
@@ -112,8 +114,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		final int tempNodeCount = nodeCount;		
 		stack.push(root);
 
-		
-		
 		return new java.util.Iterator<T>() {
 			Node trav = root;
 
@@ -199,6 +199,31 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		};
  	}
 	
+    public java.util.Iterator<T> getLevelOrderIterator() {
+		
+		QueueImp<Node> queue = new QueueImp<>();
+		queue.offer(root);
+		
+		return new java.util.Iterator<T>() {
+
+			@Override
+			public boolean hasNext() {
+				return root != null && !queue.isEmpty();
+			}
+
+			@Override
+			public T next() {
+				Node node = queue.poll();
+				if(node.left != null) {
+					queue.offer(node.left);
+				}
+				if(node.right != null) {
+					queue.offer(node.right);
+				}
+				return node.data;
+			}
+		};
+	}
 	public int height() {
 		return height(root);
 	}
@@ -207,4 +232,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if(node == null) return 0;
 		return Math.max(height(node.left), height(node.right)) + 1;
 	}
+	
+	
 }

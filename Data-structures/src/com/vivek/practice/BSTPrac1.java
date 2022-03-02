@@ -9,7 +9,7 @@ public class BSTPrac1<T extends Comparable<T>> {
 	
 	private Node root;
 	
-	class Node {
+	public class Node {
 		Node left, right;
 		T data;
 		public Node( Node left, Node right, T data) {

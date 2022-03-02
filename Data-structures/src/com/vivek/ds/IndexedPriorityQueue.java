@@ -68,6 +68,11 @@ public class IndexedPriorityQueue<T extends Comparable<T>> {
 		im[sz] = ki;
 		values[ki] = value;
 		swim(sz++);
+		System.out.println("size : "+sz);
+		for(int i = 0; i < sz; i++) {
+			System.out.println("["+im[i]+" - "+values[im[i]]+"] ");
+		}
+		
 	}
 
 	private void swim(int i) {
@@ -78,6 +83,7 @@ public class IndexedPriorityQueue<T extends Comparable<T>> {
 	}
 
 	private boolean less(int i, int j) {
+		System.out.println("#### i : "+i + " #### j : "+j);
 		return ((T) values[im[i]]).compareTo((T) values[im[j]]) < 0;
 	}
 
@@ -113,12 +119,12 @@ public class IndexedPriorityQueue<T extends Comparable<T>> {
 	
 	private void sink(int i) {
 		while(true) {
-			
 			if(i >= sz) return;
 			
 			int from = child[i];
 			int to = Math.min(from + D - 1, sz-1);
 			int smallest = from;
+			if(smallest >= sz) return;
 			for(int j = from; j <= to; j++) {
 				if(((T) values[im[j]]).compareTo((T) values[im[smallest]]) < 0) {
 					smallest = j;
@@ -174,6 +180,10 @@ public class IndexedPriorityQueue<T extends Comparable<T>> {
 		if(ki <= sz || ki < 0) throw new IllegalArgumentException("Invalid key!!");
 		values[ki] = value;
 		sink(pm[ki]);
+	}
+	
+	public int peekKey() {
+		return im[0];
 	}
 
 	public int[] getPm() {

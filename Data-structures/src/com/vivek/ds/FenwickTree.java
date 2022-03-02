@@ -22,7 +22,6 @@ public class FenwickTree {
 		return Integer.lowestOneBit(i);
 	}
 	
-	
 	public long prefixSum(int i) {
 		if(i > tree.length) throw new IllegalArgumentException();
 		long sum = 0L;

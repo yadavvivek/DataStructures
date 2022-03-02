@@ -17,6 +17,8 @@ public class Test1PQ {
 	}
 	
 	public static void main(String args []) {
+		ProtectedTest pt = new ProtectedTest();
+		pt.getLaptopDetails();
 		
 		Test1PQ tp = new Test1PQ();
 		tp.add(0);
